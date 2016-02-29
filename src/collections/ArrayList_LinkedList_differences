@@ -1,0 +1,39 @@
+While others have given short description about Insert operation , 
+Let me explain you 3 basic operation on ArrayList (aka Array) and LinkedList and see what actually happens under the hood i.e. in memory.
+
+Short and General Answer
+Basically It all depends what type of operation you are doing while iterating over these data structures, 
+All data structures have trade off between time and memory and depending on our needs we should choose the right data structure. 
+So there are some cases where LinkedList are faster then array and vice- versa. Consider the three basic operation on data structures.
+
+
+1.Searching 
+Since ArrayList uses array as underline data structure and we know array is is index based data structure searching in 
+array using array.get(index) (In Java) will take O(1) time while in Linkedlist its O(n) as LinkedList is not an index based data
+ structure so you will need to traverse up to index , where index <=n , n is size of linked list , so array is faster the linked list when have 
+ random access of elements. 
+
+A. So what's the beauty behind this ?
+
+As Arrays are contiguous memory blocks, large chunks of them will be loaded into the cache upon first access this makes it comparatively quick to 
+access remaining elements of the array,as much as we access the elements in array locality of reference also increases thus less catch misses, 
+Cache locality refers to the operations being in the cache and thus execute much faster as compared to in memory,basically In array we maximize 
+the chances of sequential element access being in the cache.
+
+While Linked lists aren't necessarily in contiguous blocks of memory, there's no guarantee that items which appear sequentially in the list are 
+actually arranged near each-other in memory, this means fewer cache hits e.g. more cache misses because we need to read from memory for every access 
+of linked list element which increases the time it takes to access them and degraded performance so if we are doing more random access operation aka 
+searching , array will be fast as explained below.
+
+2. Insertion 
+This is easy and fast in LinkedList as insertion is O(1) operation (Given a pointer to node we need to insert item) in LinkedList as compared to array,
+ consider the case when array is full, we need to copy contents to new array if array gets full which makes inserting an element into ArrayList of O(n) 
+ in worst case, while ArrayList also needs to update its index if you insert something anywhere except at the end of array , in case of LinkedList we 
+ needn't to be re-size it, you just need to update pointers.Only benefits of Doubly LinkedList as pointed out by anon is that we can iterate over 
+ LinkedList from both directions.
+
+3. Deletion It works just like insertion and has better time complexity in LinkedList than array.
+
+Space Overhead.
+LinkedList has more memory overhead than ArrayList because in ArrayList each index only holds actual object (data) but in case of LinkedList each node
+ holds both data and address of next  and previous node.

@@ -1,0 +1,46 @@
+
+A hashmap works like this (this is a little bit simplified, but it illustrates the basic mechanism):
+
+It has a number of "buckets" which it uses to store key-value pairs in. Each bucket has a
+unique number - that's what identifies the bucket. When you put a key-value pair into the map,
+the hashmap will look at the hash code of the key, and store the pair in the bucket of which the identifier
+is the hash code of the key.
+
+----------------------------------------------------------------------------------------------------------------
+hashCode() function  which returns an integer value is the Hash function. The important point to note that,
+this method is present in Object class ( Mother of all class).
+
+The most important point to note from the above line :  hashCode method return  int value.
+So the Hash value is the int value returned by the hash function.
+
+----------------------------------------------------------------------------------------------------------------
+
+For example: The hash code of the key is 235 -> the pair is stored in bucket number 235.
+(Note that one bucket can store more then one key-value pair).
+When you lookup a value in the hashmap, by giving it a key, it will first look at the hash code of the
+key that you gave.
+The hashmap will then look into the corresponding bucket, and then it will compare the key that you gave with the keys
+of all pairs in the bucket, by comparing them with equals().
+
+Now you can see how this is very efficient for looking up key-value pairs in a map:
+by the hash code of the key the hashmap immediately knows in which bucket to look,
+so that it only has to test against what's in that bucket.
+
+Looking at the above mechanism, you can also see what requirements are necessary on the hashCode() and equals()
+ methods of keys:
+
+
+If two keys are the same (equals() returns true when you compare them),
+their hashCode() method must return the same number.
+
+If keys violate this, then keys that are equal might be stored in different buckets,
+and the hashmap would not be able to find key-value pairs (because it's going to look in the same bucket).
+
+If two keys are different,
+then it doesn't matter if their hash codes are the same or not.
+
+They will be stored in the same bucket if their hash codes are the same, and in this case,
+the hashmap will use equals() to tell them apart.
+
+
+Read more ---> http://javahungry.blogspot.com/2013/08/hashing-how-hash-map-works-in-java-or.html
